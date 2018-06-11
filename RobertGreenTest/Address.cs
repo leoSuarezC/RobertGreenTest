@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace RobertGreenTest
 {
-    class Program
+    class Address : ObjectsManager
     {
-        static void Main(string[] args)
+        private string _name;
+
+        public Address(string name = "")
         {
-            var address = new Address("add 1");
-            address.Save();
-            Console.WriteLine(address);
+            _name = name;
         }
     }
 }
