@@ -1,15 +1,39 @@
-﻿using NUnit.Framework;
+﻿
+using NUnit.Framework;
+using RobertGreenTest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Assert = NUnit.Framework.Assert;
 
-namespace RobertGreenTest
+
+namespace RobertGreenTest.Tests
 {
-    class Program
+    [TestClass()]
+    public class ObjectsManagerTests
     {
-        static void Main(string[] args)
+        //[TestMethod()]
+        //public void SaveTest()
+        //{
+        //    Assert.Fail();
+        //}
+
+        //[TestMethod()]
+        //public void FindTest()
+        //{
+        //    Assert.Fail();
+        //}
+
+        //[TestMethod()]
+        //public void DeleteTest()
+        //{
+        //    Assert.Fail();
+        //}
+        [TestCase]
+        public void ProgrammerTest()
         {
             var address = new Address("56 Main St", "Mesa", "AZ", "38574");
             var customer = new Customer("John", "Doe", address);
@@ -26,19 +50,20 @@ namespace RobertGreenTest
             Customer savedCustomer = Customer.Find(customer.Id);
             Assert.IsNotNull(savedCustomer);
             Assert.AreSame(customer.Address, address);
-            //  Assert.AreEqual(savedCustomer.Address, address);
+            Assert.AreEqual(savedCustomer.Address, address);
+            Assert.AreEqual(customer.Id, savedCustomer.Id);
             Assert.AreEqual(customer.FirstName, savedCustomer.FirstName);
             Assert.AreEqual(customer.LastName, savedCustomer.LastName);
-           // Assert.AreEqual(customer, savedCustomer);
+            Assert.AreEqual(customer, savedCustomer);
             Assert.AreNotSame(customer, savedCustomer);
 
             Company savedCompany = Company.Find(company.Id);
             Assert.IsNotNull(savedCompany);
             Assert.AreSame(company.Address, address);
-           // Assert.AreEqual(savedCompany.Address, address);
+            Assert.AreEqual(savedCompany.Address, address);
             Assert.AreEqual(company.Id, savedCompany.Id);
             Assert.AreEqual(company.Name, savedCompany.Name);
-          //  Assert.AreEqual(company, savedCompany);
+            Assert.AreEqual(company, savedCompany);
             Assert.AreNotSame(company, savedCompany);
 
             customer.Delete();
@@ -48,7 +73,6 @@ namespace RobertGreenTest
             company.Delete();
             Assert.IsNullOrEmpty(company.Id);
             Assert.IsNull(Company.Find(company.Id));
-            Console.WriteLine(address);
         }
     }
 }
